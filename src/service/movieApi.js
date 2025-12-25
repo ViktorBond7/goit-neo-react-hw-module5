@@ -23,4 +23,3 @@ export const getMovieDetails = async (movieId) => {
 
   return data.data;
 };
-// https://api.themoviedb.org/3/movie/{movie_id}
