@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.containerDescription {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+.title {
+  font-size: 28px;
+}
+
+.page {
+  font-weight: bold;
+}
+
+.list {
+  display: flex;
+  gap: 10px;
+}
+.img {
+  border-radius: 5px;
+}

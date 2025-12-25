@@ -1,0 +1,18 @@
+.containerHeader {
+  width: 100vw;
+  background-color: rgb(214, 215, 215);
+  box-shadow: 0px 7px 5px #898686;
+}
+
+.link {
+  color: blue;
+  font-size: 20px;
+  font-weight: bold;
+}
+.activ {
+  color: rgb(174, 22, 57);
+}
+.list {
+  display: flex;
+  gap: 16px;
+}
