@@ -1,11 +1,9 @@
 import { NavLink, useParams } from "react-router-dom";
 import Container from "../Container/Container";
 import css from "./AdditionalInf.module.css";
-import clsx from "clsx";
+import { buildLinkClass } from "../../helpers/buildLinkClass";
 
 const AdditionalInf = () => {
-  const buildLinkClass = ({ isActive }) =>
-    clsx(css.link, isActive && css.activ);
   const { movieId } = useParams();
 
   return (
@@ -15,7 +13,7 @@ const AdditionalInf = () => {
         <ul className={css.list}>
           <li>
             <NavLink
-              className={buildLinkClass}
+              className={(props) => buildLinkClass({ ...props, css })}
               to={`/movies/${movieId}/cast`}
             >
               Cast
@@ -23,7 +21,7 @@ const AdditionalInf = () => {
           </li>
           <li>
             <NavLink
-              className={buildLinkClass}
+              className={(props) => buildLinkClass({ ...props, css })}
               to={`/movies/${movieId}/reviews`}
             >
               Rewies

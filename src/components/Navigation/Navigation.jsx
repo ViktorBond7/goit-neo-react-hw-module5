@@ -1,24 +1,27 @@
 import { NavLink } from "react-router-dom";
 import css from "./Navigation.module.css";
 import Container from "../Container/Container";
-import clsx from "clsx";
+import { buildLinkClass } from "../../helpers/buildLinkClass";
 
 const Header = () => {
-  const buildLinkClass = ({ isActive }) =>
-    clsx(css.link, isActive && css.activ);
-
   return (
     <header className={css.containerHeader}>
       <Container>
         <nav>
           <ul className={css.list}>
             <li>
-              <NavLink to="/" className={buildLinkClass}>
+              <NavLink
+                to="/"
+                className={(props) => buildLinkClass({ ...props, css })}
+              >
                 Home
               </NavLink>
             </li>
             <li>
-              <NavLink to="/movies" className={buildLinkClass}>
+              <NavLink
+                to="/movies"
+                className={(props) => buildLinkClass({ ...props, css })}
+              >
                 Movies
               </NavLink>
             </li>

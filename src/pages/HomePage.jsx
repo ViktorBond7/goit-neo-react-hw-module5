@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { getMoviesTrending } from "../service/movieApi";
 import Container from "../components/Container/Container";
 import MovieList from "../components/MovieList/MovieList";
+import ErrorMessege from "../components/ErrorMessege/ErrorMessege";
+import Loader from "../components/Loader/Loader";
 
-const adres = "https://image.tmdb.org/t/p/w300/";
 const Home = () => {
   const [movies, setMovies] = useState(null);
   const [isLoader, setIsLoader] = useState(false);
@@ -11,9 +12,17 @@ const Home = () => {
 
   useEffect(() => {
     const fetchMovies = async () => {
-      const data = await getMoviesTrending();
-      setMovies(data.results);
-      console.log(data);
+      try {
+        setIsLoader(true);
+        setIsError(false);
+        const data = await getMoviesTrending();
+        setMovies(data.results);
+      } catch (err) {
+        console.log(err.message);
+        setIsError(true);
+      } finally {
+        setIsLoader(false);
+      }
     };
 
     fetchMovies();
@@ -23,9 +32,10 @@ const Home = () => {
     <Container>
       <h1>Trending today</h1>
       {movies && <MovieList movies={movies} />}
+      {isLoader && <Loader />}
+      {isError && <ErrorMessege />}
     </Container>
   );
 };
 
 export default Home;
-// img src={`${adres}${movies.results[0].poster_path}`}

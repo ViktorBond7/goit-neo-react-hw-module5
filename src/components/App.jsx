@@ -7,12 +7,14 @@ const NotFoundPage = lazy(() => import("../pages/NotFoundPage"));
 const MovieCast = lazy(() => import("./MovieCast/MovieCast"));
 const MovieReviews = lazy(() => import("./MovieReviews/MovieReviews"));
 import Header from "./Navigation/Navigation";
+import Loader from "./Loader/Loader";
+import Container from "./Container/Container";
 
 function App() {
   return (
     <>
       <Header />
-      <Suspense fallback={<p>Loading...</p>}>
+      <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/movies" element={<MoviesPage />} />

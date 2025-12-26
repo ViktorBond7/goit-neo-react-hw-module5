@@ -4,17 +4,30 @@ import { useParams } from "react-router-dom";
 import { IoIosContact } from "react-icons/io";
 import { GoDotFill } from "react-icons/go";
 import css from "./MovieCast.module.css";
+import ErrorMessege from "../ErrorMessege/ErrorMessege";
+import Loader from "../Loader/Loader";
 
 const url = "https://image.tmdb.org/t/p/w300/";
 
 const MovieCast = () => {
-  const [movieCredits, setMovieCredits] = useState(null);
+  const [movieCredits, setMovieCredits] = useState([]);
+  const [isLoader, setIsLoader] = useState(false);
+  const [isError, setIsError] = useState(false);
   const { movieId } = useParams();
 
   useEffect(() => {
     const fetchCredits = async () => {
-      const data = await getMovieCredits(movieId);
-      setMovieCredits(data);
+      try {
+        setIsError(false);
+        setIsLoader(true);
+        const data = await getMovieCredits(movieId);
+        setMovieCredits(data);
+      } catch (err) {
+        setIsError(true);
+        console.log(err.message);
+      } finally {
+        setIsLoader(false);
+      }
     };
 
     fetchCredits();
@@ -22,8 +35,9 @@ const MovieCast = () => {
 
   return (
     <>
+      {isLoader && <Loader />}
       <ul className={css.list}>
-        {movieCredits &&
+        {movieCredits.length > 0 ? (
           movieCredits.map((movieCredit) => (
             <li className={css.item} key={movieCredit.id}>
               {movieCredit.profile_path ? (
@@ -39,8 +53,13 @@ const MovieCast = () => {
                 <GoDotFill size="12px" /> {movieCredit.name}
               </p>
             </li>
-          ))}
+          ))
+        ) : (
+          <p>No credits</p>
+        )}
       </ul>
+
+      {isError && <ErrorMessege />}
     </>
   );
 };
