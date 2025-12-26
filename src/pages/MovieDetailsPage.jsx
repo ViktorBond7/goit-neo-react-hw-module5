@@ -1,34 +1,36 @@
 import { useEffect, useState } from "react";
-import { Link, useParams, useSearchParams } from "react-router-dom";
+import { Link, Outlet, useParams } from "react-router-dom";
 import { getMovieDetails } from "../service/movieApi";
 import Container from "../components/Container/Container";
 import GoBackBtn from "../components/GoBackBtn/GoBackBtn";
 import MovieDetails from "../components/MovieDetails/MovieDetails";
+import AdditionalInf from "../components/AdditionalInf/AdditionalInf";
 
 const MovieDetailsPage = () => {
-  // const [searchParams, setSearchParams] = useSearchParams();
   const [movie, setMovie] = useState(null);
-  const param = useParams();
+  const { movieId } = useParams();
 
   useEffect(() => {
     const fetchMovieDet = async () => {
-      const data = await getMovieDetails(param.movieId);
+      const data = await getMovieDetails(movieId);
       console.log(data);
       setMovie(data);
     };
     fetchMovieDet();
-  }, [param.movieId]);
-
-  console.log(param.movieId);
+  }, [movieId]);
 
   return (
-    <Container>
-      <GoBackBtn />
-      {movie && <MovieDetails movie={movie} />}
-    </Container>
+    <>
+      <Container>
+        <GoBackBtn />
+        {movie && <MovieDetails movie={movie} />}
+      </Container>
+      {movie && <AdditionalInf />}
+      <Container>
+        <Outlet />
+      </Container>
+    </>
   );
 };
 
 export default MovieDetailsPage;
-
-// img src={`${adres}${movies.results[0].poster_path}`}

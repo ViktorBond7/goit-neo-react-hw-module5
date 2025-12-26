@@ -40,9 +40,10 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  outline: none;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #787879;
 }
 button:focus,
 button:focus-visible {
@@ -93,4 +94,8 @@ li {
 
 img {
   display: block;
+}
+
+input {
+  outline: none;
 }

@@ -5,8 +5,12 @@ const url = "https://image.tmdb.org/t/p/w300/";
 const MovieDetails = ({ movie }) => {
   return (
     <div className={css.container}>
-      <div>
-        <img className={css.img} src={`${url}${movie.poster_path}`} />
+      <div className={css.containerImg}>
+        {movie.poster_path ? (
+          <img className={css.img} src={`${url}${movie.poster_path}`} />
+        ) : (
+          <p>Image not available</p>
+        )}
       </div>
       <div className={css.containerDescription}>
         <h2 className={css.title}>{movie.title}</h2>

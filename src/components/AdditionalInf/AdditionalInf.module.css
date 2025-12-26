@@ -1,0 +1,20 @@
+.container {
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  width: 100vw;
+}
+.page {
+  font-weight: bold;
+}
+.list {
+  list-style: inside;
+  text-decoration: underline;
+}
+.link {
+  color: blue;
+  font-size: 20px;
+  font-weight: bold;
+}
+.activ {
+  color: rgb(174, 22, 57);
+}

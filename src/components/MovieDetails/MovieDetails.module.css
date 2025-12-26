@@ -21,6 +21,16 @@
   display: flex;
   gap: 10px;
 }
+
+.containerImg {
+  min-width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* place-items: center; */
+  border: 1px solid;
+  border-radius: 6px;
+}
 .img {
   border-radius: 5px;
 }
