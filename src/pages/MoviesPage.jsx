@@ -4,7 +4,7 @@ import Container from "../components/Container/Container";
 import { useSearchParams } from "react-router-dom";
 import SearchForm from "../components/SearchForm/SearchForm";
 import MovieList from "../components/MovieList/MovieList";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 import ErrorMessege from "../components/ErrorMessege/ErrorMessege";
 import Loader from "../components/Loader/Loader";
 
@@ -51,7 +51,7 @@ const Movies = () => {
     <Container>
       {isLoader && <Loader />}
       <SearchForm handleSearch={updateSearchParams} />
-      {movies.length > 0 ? <MovieList movies={movies} /> : <p>Nothing found</p>}
+      {movies.length > 0 && <MovieList movies={movies} />}
       <Toaster />
       {isError && <ErrorMessege />}
     </Container>

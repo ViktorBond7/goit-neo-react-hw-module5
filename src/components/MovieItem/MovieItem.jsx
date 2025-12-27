@@ -4,11 +4,9 @@ const MovieItem = ({ movie }) => {
   const location = useLocation();
 
   return (
-    <>
-      <Link to={`/movies/${movie.id}`} state={location}>
-        <p>{movie.title}</p>
-      </Link>
-    </>
+    <Link to={`/movies/${movie.id}`} state={location}>
+      {movie.title}
+    </Link>
   );
 };
 
